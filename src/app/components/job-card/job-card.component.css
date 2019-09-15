@@ -1,0 +1,6 @@
+.jobDescription {
+    white-space: nowrap; 
+    width: 700px; 
+    overflow: hidden;
+    text-overflow:ellipsis;
+  }

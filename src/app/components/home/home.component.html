@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Experience in Years" [formControl]="experience">
+    <input type="text" class="form-control" placeholder="Location eg: goa" [formControl]="location">
+    <input type="text" class="form-control" placeholder="Skills like Angular" [formControl]="skill">
+    <div class="input-group-prepend">
+      <button class="btn btn-primary" (click)="search()">Search</button>
+      <button class="btn btn-warning" (click)="clear()">Clear</button>
+
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<hr>
+
+
+<div class="container" *ngIf="isSearched">
+  <div *ngIf="loading">
+    <ngx-loading [show]="loading" [config]="{
+      animationType: ngxLoadingAnimationTypes, 
+      primaryColour: primaryColour, 
+      secondaryColour: secondaryColour, 
+      backdropBorderRadius: '3px'}">
+    </ngx-loading>
+  </div>
+  <div *ngIf="!loading">
+
+
+    <br>
+    <div>
+      <h4>{{(filteredJobs$ | async)?.length}} Jobs found</h4>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-sm-4">
+        <button class="btn btn-info" (click)="sortLocation()">&#8595; Sort by Location</button>
+      </div>
+      <div class="col-sm-4">
+        <button class="btn btn-info" (click)="sortExperience()">&#8595; Sort by Experience</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+        <input class="input-normal" type="text" class="form-control" [formControl]="filter"
+          style="width: 25rem">
+        <button class="btn btn-info" (click)="filterByCompanyName()">Filter By Company</button>
+    </div>
+    <br>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let job of filteredJobs$ | async">
+      <app-job-card [job]="job"></app-job-card>
+      <br>
+    </li>
+  </ul>
+</div>
