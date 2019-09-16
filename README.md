@@ -8,7 +8,7 @@ Assumptions made:
 Executing the project:
 cd search-engine/
 npm install
-npm start (for local json host, to be running in one terminal)
+npm run rest-server (for local json host, to be running in one terminal)
 ng serve -o
 
 Unit testing:
